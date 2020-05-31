@@ -1,13 +1,17 @@
+const bodyParser = require('body-parser');
 const express = require('express');
-const bodParser = require('body-parser');
+const cors = require("cors");
 
 const app = express();
+const database = require("./app/models");
 
-app.use(bodParser.json());
+database.sequelize.sync({force: true});
 
-app.use((req, res, next) => {
-    console.log("Express middleware");
-    next();
-});
+app.use(cors({origin: "http://localhost:5000"}));
+app.use(bodyParser.json());
+
+require("./app/routes/regions.routes")(app);
+require("./app/routes/districts.routes")(app);
+require("./app/routes/villages.routes")(app);
 
 app.listen(5000);
