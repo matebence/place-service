@@ -13,6 +13,7 @@ require("./app/models");
 require("./app/routes/regions.routes")(app);
 require("./app/routes/districts.routes")(app);
 require("./app/routes/villages.routes")(app);
+require("./app/routes/errors.routes")(app);
 
 app.listen(5000, () => {
     console.log(`Server beží na porte ${5000}`)
