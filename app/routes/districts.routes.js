@@ -1,5 +1,6 @@
 module.exports = app => {
     const districts = require("../controllers/districts.controller");
+    const {check} = require('express-validator');
     const router = require("express").Router();
 
     router.post("/", [

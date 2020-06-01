@@ -1,3 +1,4 @@
+const {validationResult} = require('express-validator');
 const database = require("../models");
 const Districts = database.districts;
 const Op = database.Sequelize.Op;
