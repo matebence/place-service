@@ -13,7 +13,12 @@ const sequelize = new Sequelize(databseConfig.DB, databseConfig.USER, databseCon
     }
 });
 
-const importer = new Importer({host: databseConfig.HOST, user: databseConfig.USER, password: databseConfig.PASSWORD, database: databseConfig.DB});
+const importer = new Importer({
+    host: databseConfig.HOST,
+    user: databseConfig.USER,
+    password: databseConfig.PASSWORD,
+    database: databseConfig.DB
+});
 const database = {};
 
 sequelize.sync({force: true})
