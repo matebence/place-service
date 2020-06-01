@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const Importer = require('mysql-import');
+const strings = require('../../resources/strings');
 const databseConfig = require("../config/database.config");
 
 const sequelize = new Sequelize(databseConfig.DB, databseConfig.USER, databseConfig.PASSWORD, {
@@ -17,15 +18,15 @@ const database = {};
 
 sequelize.sync({force: true})
     .then(result => {
-        console.log("Štruktúra databázy bola úspešne vytvorená");
+        console.log(strings.DATABASE_STRUCTURE);
         importer.import("./resources/data.sql").then(() => {
-            console.log("Databáza bola úspešne naplnená údajmi")
+            console.log(strings.DATABASE_SEED)
         }).catch(err => {
-            console.log("Databázu sa nepodarilo naplniť údajmi")
+            console.log(strings.DATABASE_SEED_ERR)
         });
     })
     .catch(error => {
-        console.log("Nepodarilo sa vytvoriť štruktúru databázy")
+        console.log(strings.DATABASE_STRUCTURE_ERR)
     });
 
 database.Sequelize = Sequelize;

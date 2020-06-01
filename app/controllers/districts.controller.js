@@ -1,4 +1,5 @@
 const {validationResult} = require('express-validator');
+const strings = require('../../resources/strings');
 const database = require("../models");
 const Districts = database.districts;
 const Op = database.Sequelize.Op;
@@ -7,7 +8,7 @@ exports.create = (req, res) => {
     if (Object.keys(req.body).length === 0) {
         res.status(400).send({
             timestamp: new Date().toISOString(),
-            message: "Prázdna požiadavka",
+            message: strings.SERVER_REQUEST_ERR,
             error: true,
             nav: req.protocol + '://' + req.get('host')
         });
@@ -18,7 +19,7 @@ exports.create = (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(422).send({
             timestamp: new Date().toISOString(),
-            message: "Údaje boli nesprávne vyplnené",
+            message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations:  errors.array(),
             nav: req.protocol + '://' + req.get('host')
@@ -40,7 +41,7 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 timestamp: new Date().toISOString(),
-                message: "Vytvorenie okresu sa nepodarilo, skúste znova",
+                message: strings.CREATE_DISTRICT_ERR,
                 error: true,
                 nav: req.protocol + '://' + req.get('host')
             });
@@ -52,7 +53,7 @@ exports.delete = (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(422).send({
             timestamp: new Date().toISOString(),
-            message: "Údaje boli nesprávne vyplnené",
+            message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations:  errors.array(),
             nav: req.protocol + '://' + req.get('host')
@@ -70,7 +71,7 @@ exports.delete = (req, res) => {
             } else {
                 res.status(400).send({
                     timestamp: new Date().toISOString(),
-                    message: `Ľutujeme ale okres s identifikačním číslom ${id} neexistuje`,
+                    message: strings.GET_DISTRICT_ERR,
                     error: true,
                     nav: req.protocol + '://' + req.get('host')
                 });
@@ -79,7 +80,7 @@ exports.delete = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 timestamp: new Date().toISOString(),
-                message: "Odstránenie okresu sa nepodarilo, skúste znova",
+                message: strings.DELETE_DISTRICT_ERR,
                 error: true,
                 nav: req.protocol + '://' + req.get('host')
             });
@@ -91,7 +92,7 @@ exports.update = (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(422).send({
             timestamp: new Date().toISOString(),
-            message: "Údaje boli nesprávne vyplnené",
+            message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations:  errors.array(),
             nav: req.protocol + '://' + req.get('host')
@@ -109,7 +110,7 @@ exports.update = (req, res) => {
             } else {
                 res.status(400).send({
                     timestamp: new Date().toISOString(),
-                    message: `Ľutujeme ale okres s identifikačním číslom ${id} neexistuje`,
+                    message: strings.GET_DISTRICT_ERR,
                     error: true,
                     nav: req.protocol + '://' + req.get('host')
                 });
@@ -118,7 +119,7 @@ exports.update = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 timestamp: new Date().toISOString(),
-                message: "Aktualizácia okresu sa nepodarilo, skúste znova",
+                message: strings.DELETE_DISTRICT_ERR,
                 error: true,
                 nav: req.protocol + '://' + req.get('host')
             });
@@ -130,7 +131,7 @@ exports.get = (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(422).send({
             timestamp: new Date().toISOString(),
-            message: "Údaje boli nesprávne vyplnené",
+            message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations:  errors.array(),
             nav: req.protocol + '://' + req.get('host')
@@ -146,7 +147,7 @@ exports.get = (req, res) => {
             } else {
                 res.status(400).send({
                     timestamp: new Date().toISOString(),
-                    message: `Ľutujeme ale okres s identifikačním číslom ${id} neexistuje`,
+                    message: strings.GET_DISTRICT_ERR,
                     error: true,
                     nav: req.protocol + '://' + req.get('host')
                 });
@@ -155,7 +156,7 @@ exports.get = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 timestamp: new Date().toISOString(),
-                message: `Ľutujeme ale nenašiel sa žiadný okres`,
+                message: strings.DISTRICT_NOT_FOUND,
                 error: true,
                 nav: req.protocol + '://' + req.get('host')
             });
@@ -167,7 +168,7 @@ exports.getAll = (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(422).send({
             timestamp: new Date().toISOString(),
-            message: "Údaje boli nesprávne vyplnené",
+            message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations:  errors.array(),
             nav: req.protocol + '://' + req.get('host')
@@ -188,7 +189,7 @@ exports.getAll = (req, res) => {
             } else {
                 res.status(400).send({
                     timestamp: new Date().toISOString(),
-                    message: `Ľutujeme ale nenašiel sa žiadný okres`,
+                    message: strings.DISTRICT_NOT_FOUND,
                     error: true,
                     nav: req.protocol + '://' + req.get('host')
                 });
@@ -197,7 +198,7 @@ exports.getAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 timestamp: new Date().toISOString(),
-                message: `Ľutujeme ale nenašiel sa žiadný okres`,
+                message: strings.DISTRICT_NOT_FOUND,
                 error: true,
                 nav: req.protocol + '://' + req.get('host')
             });
@@ -208,7 +209,7 @@ exports.search = (req, res) => {
     if (Object.keys(req.body).length === 0) {
         res.status(400).send({
             timestamp: new Date().toISOString(),
-            message: "Prázdna požiadavka",
+            message: strings.SERVER_REQUEST_ERR,
             error: true,
             nav: req.protocol + '://' + req.get('host')
         });
@@ -245,7 +246,7 @@ exports.search = (req, res) => {
             } else {
                 res.status(400).send({
                     timestamp: new Date().toISOString(),
-                    message: `Ľutujeme ale nenašiel sa žiadný okres`,
+                    message: strings.DISTRICT_NOT_FOUND,
                     error: true,
                     nav: req.protocol + '://' + req.get('host')
                 });
@@ -254,7 +255,7 @@ exports.search = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 timestamp: new Date().toISOString(),
-                message: `Ľutujeme ale nenašiel sa žiadný okres`,
+                message: strings.DISTRICT_NOT_FOUND,
                 error: true,
                 nav: req.protocol + '://' + req.get('host')
             });
