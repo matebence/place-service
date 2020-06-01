@@ -1,3 +1,4 @@
+const {validationResult} = require('express-validator');
 const database = require("../models");
 const Regions = database.regions;
 const Op = database.Sequelize.Op;
@@ -11,6 +12,17 @@ exports.create = (req, res) => {
             nav: req.protocol + '://' + req.get('host')
         });
         return;
+    }
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            timestamp: new Date().toISOString(),
+            message: "Údaje boli nesprávne vyplnené",
+            error: true,
+            validations:  errors.array(),
+            nav: req.protocol + '://' + req.get('host')
+        });
     }
 
     const regions = {
@@ -34,6 +46,17 @@ exports.create = (req, res) => {
 };
 
 exports.delete = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            timestamp: new Date().toISOString(),
+            message: "Údaje boli nesprávne vyplnené",
+            error: true,
+            validations:  errors.array(),
+            nav: req.protocol + '://' + req.get('host')
+        });
+    }
+
     const id = req.params.id;
 
     Regions.destroy({
@@ -62,6 +85,17 @@ exports.delete = (req, res) => {
 };
 
 exports.update = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            timestamp: new Date().toISOString(),
+            message: "Údaje boli nesprávne vyplnené",
+            error: true,
+            validations:  errors.array(),
+            nav: req.protocol + '://' + req.get('host')
+        });
+    }
+
     const id = req.params.id;
 
     Regions.update(req.body, {
@@ -90,6 +124,17 @@ exports.update = (req, res) => {
 };
 
 exports.get = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            timestamp: new Date().toISOString(),
+            message: "Údaje boli nesprávne vyplnené",
+            error: true,
+            validations:  errors.array(),
+            nav: req.protocol + '://' + req.get('host')
+        });
+    }
+
     const id = req.params.id;
 
     Regions.findByPk(id)
@@ -116,6 +161,17 @@ exports.get = (req, res) => {
 };
 
 exports.getAll = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            timestamp: new Date().toISOString(),
+            message: "Údaje boli nesprávne vyplnené",
+            error: true,
+            validations:  errors.array(),
+            nav: req.protocol + '://' + req.get('host')
+        });
+    }
+
     const pageNumber = req.params.pageNumber;
     const pageSize = req.params.pageSize;
 

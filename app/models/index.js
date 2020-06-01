@@ -19,9 +19,9 @@ sequelize.sync({force: true})
     .then(result => {
         console.log("Štruktúra databázy bola úspešne vytvorená");
         importer.import("./resources/data.sql").then(() => {
-            console.log("Databáza bola úspešne naplnená údajmy")
+            console.log("Databáza bola úspešne naplnená údajmi")
         }).catch(err => {
-            console.log("Databázu sa nepodarilo naplniť údajmy")
+            console.log("Databázu sa nepodarilo naplniť údajmi")
         });
     })
     .catch(error => {
