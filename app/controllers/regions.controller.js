@@ -41,6 +41,16 @@ exports.create = (req, res) => {
                 {rel: "region", method: "GET", href: `${req.protocol}://${req.get('host')}/api/regions/${data.id}`}]);
         })
         .catch(err => {
+            const [ValidationErrorItem] = err.errors;
+            if (ValidationErrorItem.validatorKey !== 'not_unique') throw err;
+            res.status(400).json({
+                timestamp: new Date().toISOString(),
+                message: strings.SERVER_UNIQUE_ERR+ValidationErrorItem.value.replace('-', ', '),
+                error: true,
+                nav: req.protocol + '://' + req.get('host')
+            });
+        })
+        .catch(err => {
             res.status(500).json({
                 timestamp: new Date().toISOString(),
                 message: strings.CREATE_REGION_ERR,
@@ -119,9 +129,19 @@ exports.update = (req, res) => {
             }
         })
         .catch(err => {
+            const [ValidationErrorItem] = err.errors;
+            if (ValidationErrorItem.validatorKey !== 'not_unique') throw err;
+            res.status(400).json({
+                timestamp: new Date().toISOString(),
+                message: strings.SERVER_UNIQUE_ERR+ValidationErrorItem.value.replace('-', ', '),
+                error: true,
+                nav: req.protocol + '://' + req.get('host')
+            });
+        })
+        .catch(err => {
             res.status(500).json({
                 timestamp: new Date().toISOString(),
-                message: strings.UPDATE_REGION_ERR,
+                message: strings.CREATE_REGION_ERR,
                 error: true,
                 nav: req.protocol + '://' + req.get('host')
             });
