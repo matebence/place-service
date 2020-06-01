@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        veh_reg_num: {
+        vehRegNum: {
             type: Sequelize.STRING,
             allowNull: false,
         },
@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.SMALLINT,
             allowNull: false,
         },
-        region_id: {
+        regionId: {
             type: Sequelize.INTEGER,
             allowNull: false,
         },

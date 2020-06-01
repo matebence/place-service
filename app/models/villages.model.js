@@ -6,11 +6,11 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        fullname: {
+        fullName: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        shortname: {
+        shortName: {
             type: Sequelize.STRING,
             allowNull: false,
         },
@@ -18,11 +18,11 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        district_id: {
+        districtId: {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
-        region_id: {
+        regionId: {
             type: Sequelize.INTEGER,
             allowNull: false,
         },

@@ -29,6 +29,7 @@
     "sequelize": "^5.21.11"
   },
   "devDependencies": {
+    "mysql-import": "^4.0.24",
     "nodemon": "^2.0.4"
   }
 }
