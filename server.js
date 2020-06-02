@@ -12,6 +12,7 @@ app.use(hateoasLinker);
 app.use(helmet());
 
 require("./app/models");
+require("./app/component");
 require("./app/routes/regions.routes")(app);
 require("./app/routes/districts.routes")(app);
 require("./app/routes/villages.routes")(app);
