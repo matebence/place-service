@@ -13,7 +13,7 @@ exports.create = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.SERVER_REQUEST_ERR,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }
 
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
             message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations: errors.array(),
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }
 
@@ -44,14 +44,14 @@ exports.create = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.SERVER_UNIQUE_ERR + ValidationErrorItem.value.replace('-', ', '),
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }).catch(err => {
         return res.status(500).json({
             timestamp: new Date().toISOString(),
             message: strings.CREATE_REGION_ERR,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     });
 };
@@ -64,7 +64,7 @@ exports.delete = (req, res) => {
             message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations: errors.array(),
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }
 
@@ -80,7 +80,7 @@ exports.delete = (req, res) => {
                 timestamp: new Date().toISOString(),
                 message: strings.GET_REGION_ERR,
                 error: true,
-                nav: `${req.protocol}://req.get('host')`
+                nav: `${req.protocol}://${req.get('host')}`
             });
         }
     }).catch(err => {
@@ -88,7 +88,7 @@ exports.delete = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.DELETE_REGION_ERR,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     });
 };
@@ -101,7 +101,7 @@ exports.update = (req, res) => {
             message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations: errors.array(),
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }
 
@@ -117,7 +117,7 @@ exports.update = (req, res) => {
                 timestamp: new Date().toISOString(),
                 message: strings.GET_REGION_ERR,
                 error: true,
-                nav: `${req.protocol}://req.get('host')`
+                nav: `${req.protocol}://${req.get('host')}`
             });
         }
     }).catch(err => {
@@ -127,14 +127,14 @@ exports.update = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.SERVER_UNIQUE_ERR + ValidationErrorItem.value.replace('-', ', '),
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }).catch(err => {
         return res.status(500).json({
             timestamp: new Date().toISOString(),
             message: strings.CREATE_REGION_ERR,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     });
 };
@@ -147,7 +147,7 @@ exports.get = (req, res) => {
             message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations: errors.array(),
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }
 
@@ -164,7 +164,7 @@ exports.get = (req, res) => {
                 timestamp: new Date().toISOString(),
                 message: strings.GET_REGION_ERR,
                 error: true,
-                nav: `${req.protocol}://req.get('host')`
+                nav: `${req.protocol}://${req.get('host')}`
             });
         }
     }).catch(err => {
@@ -172,7 +172,7 @@ exports.get = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.REGION_NOT_FOUND,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     });
 };
@@ -185,7 +185,7 @@ exports.getAll = (req, res) => {
             message: strings.SERVER_VALIDATION_ERR,
             error: true,
             validations: errors.array(),
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }
 
@@ -205,7 +205,7 @@ exports.getAll = (req, res) => {
                 timestamp: new Date().toISOString(),
                 message: strings.REGION_NOT_FOUND,
                 error: true,
-                nav: `${req.protocol}://req.get('host')`
+                nav: `${req.protocol}://${req.get('host')}`
             });
         }
     }).catch(err => {
@@ -213,7 +213,7 @@ exports.getAll = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.REGION_NOT_FOUND,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     });
 };
@@ -224,7 +224,7 @@ exports.search = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.SERVER_REQUEST_ERR,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     }
 
@@ -259,7 +259,7 @@ exports.search = (req, res) => {
                 timestamp: new Date().toISOString(),
                 message: strings.REGION_NOT_FOUND,
                 error: true,
-                nav: `${req.protocol}://req.get('host')`
+                nav: `${req.protocol}://${req.get('host')}`
             });
         }
     }).catch(err => {
@@ -267,7 +267,7 @@ exports.search = (req, res) => {
             timestamp: new Date().toISOString(),
             message: strings.REGION_NOT_FOUND,
             error: true,
-            nav: `${req.protocol}://req.get('host')`
+            nav: `${req.protocol}://${req.get('host')}`
         });
     });
 };
