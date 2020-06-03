@@ -1,1 +1,4 @@
-node_modules
+/src/main/resources/bootstrap.yml
+/wait-for-it.sh
+/node_modules
+/DockerFile

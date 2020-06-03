@@ -1,5 +1,4 @@
-const {validationResult} = require('express-validator');
-const {check} = require('express-validator');
+const {validationResult, check} = require('express-validator/check');
 
 const strings = require('../../resources/strings');
 const database = require("../models");

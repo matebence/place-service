@@ -1,6 +1,7 @@
 const Eureka = require('eureka-js-client').Eureka;
+const strings = require('../../resources/strings');
 const eurekaConfig = require("../config/eureka.config");
 
-const client = new Eureka({instance: eurekaConfig.instance, eureka: eurekaConfig.eureka});
-client.logger.level('debug');
-client.start(error => {});
+new Eureka({instance: eurekaConfig.instance, eureka: eurekaConfig.eureka}).start(result => {
+    console.log(strings.EUREKA_ERR)
+});

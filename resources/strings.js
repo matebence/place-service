@@ -7,6 +7,7 @@ module.exports = {
     DATABASE_STRUCTURE_ERR: `Nepodarilo sa vytvoriť štruktúru databázy`,
     DATABASE_SEED: `Databáza bola úspešne naplnená údajmi`,
     DATABASE_SEED_ERR: `Databázu sa nepodarilo naplniť údajmi`,
+    EUREKA_ERR: `Eureka service registrácia bola úspešná`,
 
     CREATE_REGION_ERR: `Vytvorenie kraja sa nepodarilo, skúste znova`,
     UPDATE_REGION_ERR: `Aktualizácia kraja sa nepodarilo, skúste znova`,

@@ -7,14 +7,15 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors({origin: "http://localhost:5000"}));
+app.use(cors());
 app.use(expressValidator());
 app.use(bodyParser.json());
 app.use(hateoasLinker);
 app.use(helmet());
 
 require("./app/models");
-require("./app/component");
+require("./app/component/eureka");
+require("./app/component/zipkin")(app);
 require("./app/routes/regions.routes")(app);
 require("./app/routes/districts.routes")(app);
 require("./app/routes/villages.routes")(app);

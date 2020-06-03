@@ -27,11 +27,16 @@
     "eureka-js-client": "^4.5.0",
     "express": "^4.17.1",
     "express-hateoas-links": "^1.1.0",
-    "express-validator": "^6.5.0",
+    "express-validator": "^5.3.0",
     "helmet": "^3.22.0",
     "ip": "^1.1.5",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.11"
+    "node-fetch": "^2.6.0",
+    "sequelize": "^5.21.11",
+    "zipkin": "^0.21.0",
+    "zipkin-context-cls": "^0.21.0",
+    "zipkin-instrumentation-express": "^0.21.0",
+    "zipkin-transport-http": "^0.21.0"
   },
   "devDependencies": {
     "mysql-import": "^4.0.24",
