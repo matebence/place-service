@@ -1,7 +1,6 @@
-module.exports = app => {
+module.exports = (app, config) => {
     const zipkinMiddleware = require('zipkin-instrumentation-express').expressMiddleware;
     const {BatchRecorder, jsonEncoder: {JSON_V2}} = require('zipkin');
-    const zipkinConfig = require("../config/zipkin.config");
     const {HttpLogger} = require('zipkin-transport-http');
     const CLSContext = require('zipkin-context-cls');
     const {Tracer} = require('zipkin');
@@ -10,11 +9,11 @@ module.exports = app => {
         ctxImpl: new CLSContext('zipkin'),
         recorder: new BatchRecorder({
             logger: new HttpLogger({
-                endpoint: `${zipkinConfig.baseUrl}/api/v2/spans`,
+                endpoint: `${config.get('node.zipkin.base-url')}/api/v2/spans`,
                 jsonEncoder: JSON_V2
             })
         }),
-        localServiceName: zipkinConfig.serviceName
+        localServiceName: 'place-service'
     });
 
     app.use(zipkinMiddleware({tracer}));

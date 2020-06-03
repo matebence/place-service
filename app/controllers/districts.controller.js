@@ -10,6 +10,15 @@ const DEFAULT_PAGE_SIZE = 10;
 const DEFAULT_PAGE_NUMBER = 1;
 
 exports.create = (req, res) => {
+    if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER']) && !req.hasPrivilege(['CREATE_DISTRICTS'])){
+        return res.status(401).json({
+            timestamp: new Date().toISOString(),
+            message: strings.AUTH_ERR,
+            error: true,
+            nav: `${req.protocol}://${req.get('host')}`
+        });
+    }
+
     if (Object.keys(req.body).length === 0) {
         return res.status(400).json({
             timestamp: new Date().toISOString(),
@@ -61,6 +70,15 @@ exports.create = (req, res) => {
 };
 
 exports.delete = (req, res) => {
+    if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN']) && !req.hasPrivilege(['DELETE_DISTRICTS'])){
+        return res.status(401).json({
+            timestamp: new Date().toISOString(),
+            message: strings.AUTH_ERR,
+            error: true,
+            nav: `${req.protocol}://${req.get('host')}`
+        });
+    }
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({
@@ -98,6 +116,15 @@ exports.delete = (req, res) => {
 };
 
 exports.update = (req, res) => {
+    if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER']) && !req.hasPrivilege(['UPDATE_DISTRICTS'])){
+        return res.status(401).json({
+            timestamp: new Date().toISOString(),
+            message: strings.AUTH_ERR,
+            error: true,
+            nav: `${req.protocol}://${req.get('host')}`
+        });
+    }
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({
@@ -144,6 +171,15 @@ exports.update = (req, res) => {
 };
 
 exports.get = (req, res) => {
+    if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER']) && !req.hasPrivilege(['VIEW_DISTRICTS'])){
+        return res.status(401).json({
+            timestamp: new Date().toISOString(),
+            message: strings.AUTH_ERR,
+            error: true,
+            nav: `${req.protocol}://${req.get('host')}`
+        });
+    }
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({
@@ -182,6 +218,15 @@ exports.get = (req, res) => {
 };
 
 exports.getAll = (req, res) => {
+    if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER']) && !req.hasPrivilege(['VIEW_DISTRICTS'])){
+        return res.status(401).json({
+            timestamp: new Date().toISOString(),
+            message: strings.AUTH_ERR,
+            error: true,
+            nav: `${req.protocol}://${req.get('host')}`
+        });
+    }
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({
@@ -223,6 +268,15 @@ exports.getAll = (req, res) => {
 };
 
 exports.search = (req, res) => {
+    if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER']) && !req.hasPrivilege(['VIEW_DISTRICTS'])){
+        return res.status(401).json({
+            timestamp: new Date().toISOString(),
+            message: strings.AUTH_ERR,
+            error: true,
+            nav: `${req.protocol}://${req.get('host')}`
+        });
+    }
+
     if (Object.keys(req.body).length === 0) {
         return res.status(400).json({
             timestamp: new Date().toISOString(),

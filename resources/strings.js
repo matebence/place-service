@@ -8,6 +8,8 @@ module.exports = {
     DATABASE_SEED: `Databáza bola úspešne naplnená údajmi`,
     DATABASE_SEED_ERR: `Databázu sa nepodarilo naplniť údajmi`,
     EUREKA_ERR: `Eureka service registrácia bola úspešná`,
+    AUTH_REQUIRED: `Ľutujeme, ale stránka nie je k dispozícií`,
+    AUTH_ERR: `Prístup odmietnutý`,
 
     CREATE_REGION_ERR: `Vytvorenie kraja sa nepodarilo, skúste znova`,
     UPDATE_REGION_ERR: `Aktualizácia kraja sa nepodarilo, skúste znova`,
