@@ -1,5 +1,6 @@
 const hateoasLinker = require('express-hateoas-links');
 const expressValidator = require('express-validator');
+const node = require('./resources/bootstrap');
 const client = require("cloud-config-client");
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -15,11 +16,13 @@ app.use(hateoasLinker);
 app.use(helmet());
 
 client.load({
-    endpoint: 'http://192.168.99.100:8888',
-    name: 'place-service',
-    profiles: 'dev',
-    auth: {user: "app-blesk-config-server", pass: "b8199f18ee07292f39f5d9213cf493e8"}
+    endpoint: node.cloud.config.uri,
+    name: node.application.name,
+    profiles: node.profiles.active,
+    auth: {user: node.cloud.config.username, pass: node.cloud.config.password}
 }).then(config => {
+    config.bootstrap = node;
+
     require("./app/models")(app, config);
 
     require("./app/component/eureka")(app, config);
@@ -33,7 +36,7 @@ client.load({
 
     require("./app/routes/errors.routes")(app);
 
-    app.listen(5000, () => {
-        console.log(`Server beží na porte ${5000}`)
+    app.listen(node.server.port, () => {
+        console.log(`Server beží na porte ${node.server.port}`)
     });
 }).catch(console.error);

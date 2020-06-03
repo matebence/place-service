@@ -4,13 +4,13 @@ module.exports = (app, config) => {
     const eureka = {
         instance: {
             hostName: require('os').hostname(),
-            app: "PLACE-SERVICE",
-            vipAddress: "place-service",
-            instanceId: `${require('os').hostname()}:place-service:5000`,
+            app: config.bootstrap.application.name.toUpperCase(),
+            vipAddress: config.bootstrap.application.name,
+            instanceId: `${require('os').hostname()}:${config.bootstrap.application.name}:${config.bootstrap.server.port}`,
             ipAddr: require('ip').address(),
             status: "UP",
             port: {
-                $: 5000,
+                $: config.bootstrap.server.port,
                 '@enabled': 'true',
             },
             dataCenterInfo: {

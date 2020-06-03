@@ -13,7 +13,7 @@ module.exports = (app, config) => {
                 jsonEncoder: JSON_V2
             })
         }),
-        localServiceName: 'place-service'
+        localServiceName: config.bootstrap.application.name
     });
 
     app.use(zipkinMiddleware({tracer}));
