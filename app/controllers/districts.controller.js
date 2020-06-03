@@ -1,6 +1,9 @@
 const {validationResult} = require('express-validator');
+const {check} = require('express-validator');
+
 const strings = require('../../resources/strings');
 const database = require("../models");
+
 const Districts = database.districts;
 const Op = database.Sequelize.Op;
 
@@ -272,4 +275,63 @@ exports.search = (req, res) => {
             nav: `${req.protocol}://${req.get('host')}`
         });
     });
+};
+
+exports.validate = (method) => {
+    switch (method) {
+        case 'create': {
+            return [
+                check('name')
+                    .isLength({min: 3, max: 64}).withMessage(strings.DISTRICT_NAME_LENGHT)
+                    .isAlpha(['sk-SK']).withMessage(strings.DISTRICT_NAME_ALPHA),
+                check('vehRegNum')
+                    .isLength({min: 2, max: 2}).withMessage(strings.DISTRICT_VEH_REG_NUM_LENGHT)
+                    .isAlpha(['sk-SK']).withMessage(strings.DISTRICT_VEH_REG_NUM_ALPHA),
+                check('code')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_CODE_INT),
+                check('regionId')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_REGION_ID_INT),
+                check('use')
+                    .isInt({min: 0, max: 1}).withMessage(strings.DISTRICT_USE_INT)
+            ]
+        }
+        case 'delete': {
+            return [
+                check('id')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_ID_INT)
+            ]
+        }
+        case 'update': {
+            return [
+                check('id')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_ID_INT),
+                check('name')
+                    .isLength({min: 3, max: 64}).withMessage(strings.DISTRICT_NAME_LENGHT)
+                    .isAlpha(['sk-SK']).withMessage(strings.DISTRICT_NAME_ALPHA),
+                check('vehRegNum')
+                    .isLength({min: 2, max: 2}).withMessage(strings.DISTRICT_VEH_REG_NUM_LENGHT)
+                    .isAlpha(['sk-SK']).withMessage(strings.DISTRICT_VEH_REG_NUM_ALPHA),
+                check('code')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_CODE_INT),
+                check('regionId')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_REGION_ID_INT),
+                check('use')
+                    .isInt({min: 0, max: 1}).withMessage(strings.DISTRICT_USE_INT)
+            ]
+        }
+        case 'get': {
+            return [
+                check('id')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_ID_INT)
+            ]
+        }
+        case 'getAll': {
+            return [
+                check('pageNumber')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_PAGE_NUMBER_INT),
+                check('pageSize')
+                    .isInt({min: 1}).withMessage(strings.DISTRICT_PAGE_SIZE_INT)
+            ]
+        }
+    }
 };

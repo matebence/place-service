@@ -1,6 +1,9 @@
 const {validationResult} = require('express-validator');
+const {check} = require('express-validator');
+
 const strings = require('../../resources/strings');
 const database = require("../models");
+
 const Regions = database.regions;
 const Op = database.Sequelize.Op;
 
@@ -158,7 +161,11 @@ exports.get = (req, res) => {
         if (data) {
             return res.status(200).json(data, [
                 {rel: "self", method: "GET", href: req.protocol + '://' + req.get('host') + req.originalUrl},
-                {rel: "all-regions", method: "GET", href: `${req.protocol}://${req.get('host')}/api/regions/page/${DEFAULT_PAGE_NUMBER}/${DEFAULT_PAGE_SIZE}`}]);
+                {
+                    rel: "all-regions",
+                    method: "GET",
+                    href: `${req.protocol}://${req.get('host')}/api/regions/page/${DEFAULT_PAGE_NUMBER}/${DEFAULT_PAGE_SIZE}`
+                }]);
         } else {
             return res.status(400).json({
                 timestamp: new Date().toISOString(),
@@ -199,7 +206,11 @@ exports.getAll = (req, res) => {
         if (data.length > 0 || data !== undefined) {
             return res.status(206).json({data}, [
                 {rel: "self", method: "GET", href: req.protocol + '://' + req.get('host') + req.originalUrl},
-                {rel: "next-range", method: "GET", href: `${req.protocol}://${req.get('host')}/api/regions/page/${1 + Number(req.params.pageNumber)}/${pagreq.params.pageSizeeSize}`}]);
+                {
+                    rel: "next-range",
+                    method: "GET",
+                    href: `${req.protocol}://${req.get('host')}/api/regions/page/${1 + Number(req.params.pageNumber)}/${pagreq.params.pageSizeeSize}`
+                }]);
         } else {
             return res.status(400).json({
                 timestamp: new Date().toISOString(),
@@ -270,4 +281,55 @@ exports.search = (req, res) => {
             nav: `${req.protocol}://${req.get('host')}`
         });
     });
+};
+
+exports.validate = (method) => {
+    switch (method) {
+        case 'create': {
+            return [
+                check('name')
+                    .isLength({min: 3, max: 64}).withMessage(strings.REGION_NAME_ALPHA)
+                    .isAlpha(['sk-SK']).withMessage(strings.REGION_NAME_ALPHA),
+                check('shortcut')
+                    .isLength({min: 2, max: 2}).withMessage(strings.REGION_SHORTCUT_LENGHT)
+                    .isAlpha(['sk-SK']).withMessage(strings.REGION_SHORTCUT_ALPHA),
+                check('use')
+                    .isInt({min: 0, max: 1}).withMessage(strings.REGION_USE_INT)
+            ]
+        }
+        case 'delete': {
+            return [
+                check('id')
+                    .isInt({min: 1}).withMessage(strings.REGION_ID_INT)
+            ]
+        }
+        case 'update': {
+            return [
+                check('id')
+                    .isInt({min: 1}).withMessage(strings.REGION_ID_INT),
+                check('name')
+                    .isLength({min: 3, max: 64}).withMessage(strings.REGION_NAME_ALPHA)
+                    .isAlpha(['sk-SK']).withMessage(strings.REGION_NAME_ALPHA),
+                check('shortcut')
+                    .isLength({min: 2, max: 2}).withMessage(strings.REGION_SHORTCUT_LENGHT)
+                    .isAlpha(['sk-SK']).withMessage(strings.REGION_SHORTCUT_ALPHA),
+                check('use')
+                    .isInt({min: 0, max: 1}).withMessage(strings.REGION_USE_INT)
+            ]
+        }
+        case 'get': {
+            return [
+                check('id')
+                    .isInt({min: 1}).withMessage(strings.REGION_ID_INT)
+            ]
+        }
+        case 'getAll': {
+            return [
+                check('pageNumber')
+                    .isInt({min: 1}).withMessage(strings.REGION_PAGE_NUMBER_INT),
+                check('pageSize')
+                    .isInt({min: 1}).withMessage(strings.REGION_PAGE_SIZE_INT)
+            ]
+        }
+    }
 };
