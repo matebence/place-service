@@ -42,9 +42,9 @@ module.exports = (app, config) => {
     database.districts = require("./districts.model")(sequelize, Sequelize);
     database.villages = require("./villages.model")(sequelize, Sequelize);
 
-    database.regions.hasMany(database.districts, {constraints: true, onDelete: 'CASCADE'});
-    database.regions.hasMany(database.villages, {constraints: true, onDelete: 'CASCADE'});
-    database.districts.hasMany(database.villages, {constraints: true, onDelete: 'CASCADE'});
+    database.regions.hasMany(database.districts);
+    database.regions.hasMany(database.villages);
+    database.districts.hasMany(database.villages);
 
     database.districts.belongsTo(database.regions);
     database.villages.belongsTo(database.regions);

@@ -4,6 +4,7 @@ const strings = require('../../resources/strings');
 const database = require("../models");
 
 const Districts = database.districts;
+const Villages = database.villages;
 const Op = database.Sequelize.Op;
 
 const DEFAULT_PAGE_SIZE = 10;
@@ -124,11 +125,12 @@ exports.delete = {
     ],
     inDatabase: (req, res, next) => {
         return database.sequelize.transaction((t) => {
-            Districts.destroy({
-                where: {id: req.params.id}
-            }, {transaction: t});
+            return Promise.all([
+                Districts.destroy({where: {id: req.params.id}}, {transaction: t}),
+                Villages.destroy({where: {districtId: req.params.id}}, {transaction: t})
+            ]);
         }).then(num => {
-            if (num === 1) {
+            if (num.every(number => number > 0)) {
                 return res.status(200).json({});
             } else {
                 return res.status(400).json({
