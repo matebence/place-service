@@ -97,7 +97,7 @@ exports.create = {
 
 exports.delete = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN']) && !req.hasPrivilege(['DELETE_VILLAGES'])) {
+        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER']) && !req.hasPrivilege(['DELETE_VILLAGES'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
