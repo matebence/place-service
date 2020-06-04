@@ -46,5 +46,9 @@ module.exports = (app, config) => {
     database.regions.hasMany(database.villages, {constraints: true, onDelete: 'CASCADE'});
     database.districts.hasMany(database.villages, {constraints: true, onDelete: 'CASCADE'});
 
+    database.districts.belongsTo(database.regions);
+    database.villages.belongsTo(database.regions);
+    database.villages.belongsTo(database.districts);
+
     module.exports = database;
 };

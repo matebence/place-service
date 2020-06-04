@@ -329,7 +329,7 @@ exports.getAll = {
             if (data.length > 0 || data !== undefined) {
                 return res.status(206).json({data}, [
                     {rel: "self", method: "GET", href: req.protocol + '://' + req.get('host') + req.originalUrl},
-                    {rel: "next-range", method: "GET", href: `${req.protocol}://${req.get('host')}/api/regions/page/${1 + Number(req.params.pageNumber)}/${pagreq.params.pageSizeeSize}`}]);
+                    {rel: "next-range", method: "GET", href: `${req.protocol}://${req.get('host')}/api/regions/page/${1 + Number(req.params.pageNumber)}/${req.params.pageSize}`}]);
             } else {
                 return res.status(400).json({
                     timestamp: new Date().toISOString(),

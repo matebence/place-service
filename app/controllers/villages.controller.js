@@ -276,7 +276,7 @@ exports.get = {
     inDatabase: (req, res, next) => {
         return database.sequelize.transaction((t) => {
             return Villages.findByPk(req.params.id,
-                {transaction: t});
+                {include: [database.regions, database.districts], transaction: t});
         }).then(data => {
             if (data) {
                 return res.status(200).json(data, [
@@ -338,7 +338,8 @@ exports.getAll = {
             return Villages.findAll({
                 offset: (Number(req.params.pageNumber) - 1) * Number(req.params.pageSize),
                 limit: Number(req.params.pageSize),
-                order: [['fullName', 'ASC']]
+                order: [['fullName', 'ASC']],
+                include: [database.regions, database.districts]
             }, {transaction: t});
         }).then(data => {
             if (data.length > 0 || data !== undefined) {
@@ -407,7 +408,8 @@ exports.search = {
                 offset: (Number(pagination.pageNumber ? pagination.pageNumber : DEFAULT_PAGE_NUMBER) - 1) * Number(pagination.pageSize ? pagination.pageSize : DEFAULT_PAGE_SIZE),
                 limit: Number(pagination.pageSize ? pagination.pageSize : DEFAULT_PAGE_SIZE),
                 order: order,
-                where: search
+                where: search,
+                include: [database.regions, database.districts]
             }, {transaction: t});
         }).then(data => {
             if (data.length > 0 || data !== undefined) {
