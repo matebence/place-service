@@ -2,17 +2,17 @@ module.exports = app => {
     const districts = require("../controllers/districts.controller");
     const router = require("express").Router();
 
-    router.post("/", districts.validate('create'), districts.create);
+    router.post("/", districts.create.authorize, districts.create.checkBody, districts.create.validate, districts.create.inDatabase);
 
-    router.delete("/:id", districts.validate('delete'), districts.delete);
+    router.delete("/:id", districts.delete.authorize, districts.delete.validate, districts.delete.inDatabase);
 
-    router.put("/:id", districts.validate('update'), districts.update);
+    router.put("/:id", districts.update.authorize, districts.update.checkBody, districts.update.validate, districts.update.inDatabase);
 
-    router.get("/:id", districts.validate('get'), districts.get);
+    router.get("/:id", districts.get.authorize, districts.get.validate, districts.get.inDatabase);
 
-    router.get("/page/:pageNumber/limit/:pageSize", districts.validate('getAll'), districts.getAll);
+    router.get("/page/:pageNumber/limit/:pageSize", districts.getAll.authorize, districts.getAll.validate, districts.getAll.inDatabase);
 
-    router.post("/search", districts.search);
+    router.post("/search", districts.search.authorize, districts.search.checkBody, districts.search.inDatabase);
 
     app.use('/api/districts', router);
 };

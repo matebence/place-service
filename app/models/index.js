@@ -9,7 +9,8 @@ module.exports = (app, config) => {
         define: {
             charset: config.get('node.datasource.charset'),
             collate: config.get('node.datasource.encoding'),
-            timestamps: true
+            timestamps: true,
+            paranoid: true
         }
     });
 
