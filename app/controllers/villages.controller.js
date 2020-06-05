@@ -87,7 +87,7 @@ exports.create = {
         }).catch(err => {
             return res.status(500).json({
                 timestamp: new Date().toISOString(),
-                message: strings.CREATE_REGION_ERR,
+                message: strings.CREATE_VILLAGE_ERR,
                 error: true,
                 nav: `${req.protocol}://${req.get('host')}`
             });
@@ -235,7 +235,7 @@ exports.update = {
         }).catch(err => {
             return res.status(500).json({
                 timestamp: new Date().toISOString(),
-                message: strings.CREATE_REGION_ERR,
+                message: strings.UPDATE_VILLAGE_ERR,
                 error: true,
                 nav: `${req.protocol}://${req.get('host')}`
             });
