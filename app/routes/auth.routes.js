@@ -43,7 +43,7 @@ module.exports = (app, config) => {
         const beginKey = "-----BEGIN PUBLIC KEY-----";
         const endKey = "-----END PUBLIC KEY-----";
 
-        const sanatizedKey = key.replace(beginKey, '').replace(endKey, '').replace('\n', '')
+        const sanatizedKey = key.replace(beginKey, '').replace(endKey, '').replace('\n', '');
         const keyArray = sanatizedKey.split('').map((l, i) => {
             const position = i + 1;
             const isLastCharacter = sanatizedKey.length === position;

@@ -9,11 +9,11 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
 app.use(expressValidator());
 app.use(bodyParser.json());
 app.use(hateoasLinker);
 app.use(helmet());
+app.use(cors());
 
 client.load({
     endpoint: node.cloud.config.uri,
@@ -25,8 +25,8 @@ client.load({
 
     require("./app/models")(app, config);
 
-    require("./app/component/eureka")(app, config);
-    require("./app/component/zipkin")(app, config);
+    require("./app/component/eureka.component")(app, config);
+    require("./app/component/zipkin.component")(app, config);
 
     require("./app/routes/auth.routes")(app, config);
 
@@ -36,7 +36,7 @@ client.load({
 
     require("./app/routes/errors.routes")(app);
 
-    app.listen(node.server.port, () => {
-        console.log(`Server beží na porte ${node.server.port}`)
-    });
+    return app.listen(node.server.port);
+}).then(() => {
+    console.log(`Server beží na porte ${node.server.port}`)
 }).catch(console.error);
