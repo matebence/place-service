@@ -13,6 +13,6 @@ module.exports = {
         active: "dev"
     },
     server: {
-        port: 5000
+        port: process.env.PORT
     }
 };
