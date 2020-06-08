@@ -278,7 +278,7 @@ exports.get = {
             if (data) {
                 return res.status(200).json(data, [
                     {rel: "self", method: "GET", href: req.protocol + '://' + req.get('host') + req.originalUrl},
-                    {rel: "all-districts", method: "GET", href: `${req.protocol}://${req.get('host')}/api/districts/page/${DEFAULT_PAGE_NUMBER}/${DEFAULT_PAGE_SIZE}`}]);
+                    {rel: "all-districts", method: "GET", href: `${req.protocol}://${req.get('host')}/api/districts/page/${DEFAULT_PAGE_NUMBER}/limit/${DEFAULT_PAGE_SIZE}`}]);
             } else {
                 return res.status(400).json({
                     timestamp: new Date().toISOString(),
@@ -342,7 +342,7 @@ exports.getAll = {
             if (data.length > 0 || data !== undefined) {
                 return res.status(206).json({data}, [
                     {rel: "self", method: "GET", href: req.protocol + '://' + req.get('host') + req.originalUrl},
-                    {rel: "next-range", method: "GET", href: `${req.protocol}://${req.get('host')}/api/districts/page/${1 + Number(req.params.pageNumber)}/${req.params.pageSize}`}]);
+                    {rel: "next-range", method: "GET", href: `${req.protocol}://${req.get('host')}/api/districts/page/${1 + Number(req.params.pageNumber)}/limit/${req.params.pageSize}`}]);
             } else {
                 return res.status(400).json({
                     timestamp: new Date().toISOString(),
@@ -387,8 +387,9 @@ exports.search = {
     },
     inDatabase: (req, res, next) => {
         const pagination = req.body.pagination;
-        const order = [];
-        const search = [];
+        let order = [];
+        let search = [];
+        let hateosLinks = [];
 
         if (req.body.orderBy) {
             for (let key in req.body.orderBy) {
@@ -400,6 +401,11 @@ exports.search = {
                 search.push({[key]: {[Op.like]: `%${req.body.search[key]}%`}});
             }
         }
+        Districts.count({where: search}).then(count => {
+            hateosLinks.push({rel: "self", method: "GET", href: req.protocol + '://' + req.get('host') + req.originalUrl});
+            if (Number(pagination.pageNumber) > 1) hateosLinks.push({rel: "has-prev", method: "POST", href: `${req.protocol}://${req.get('host')}/api/districts/search`});
+            if ((Number(pagination.pageNumber) * Number(pagination.pageSize)) < count) hateosLinks.push({rel: "has-next", method: "POST", href: `${req.protocol}://${req.get('host')}/api/districts/search`});
+        });
 
         return database.sequelize.transaction((t) => {
             return Districts.findAll({
@@ -411,8 +417,7 @@ exports.search = {
             }, {transaction: t});
         }).then(data => {
             if (data.length > 0 || data !== undefined) {
-                return res.status(200).json(data, [
-                    {rel: "self", method: "GET", href: req.protocol + '://' + req.get('host') + req.originalUrl}]);
+                return res.status(200).json(data, hateosLinks);
             } else {
                 return res.status(400).json({
                     timestamp: new Date().toISOString(),
