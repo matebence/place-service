@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "plc_user",
+    "password": "7f56c92e9461f07fbcc2ddbef875d120",
+    "database": "place_service",
+    "host": "192.168.99.100",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}

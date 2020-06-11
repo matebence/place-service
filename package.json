@@ -41,7 +41,6 @@
     "zipkin-transport-http": "^0.21.0"
   },
   "devDependencies": {
-    "mysql-import": "^4.0.24",
     "nodemon": "^2.0.4"
   }
 }
