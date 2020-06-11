@@ -60,11 +60,7 @@ exports.create = {
     ],
     inDatabase: (req, res, next) => {
         return database.sequelize.transaction((t) => {
-            return Regions.create({
-                name: req.body.name,
-                shortcut: req.body.shortcut,
-                use: req.body.use
-            }, {transaction: t});
+            return Regions.create(req.body, {transaction: t});
         }).then(data => {
             return res.status(201).json(data, [
                 {rel: "region", method: "GET", href: `${req.protocol}://${req.get('host')}/api/regions/${data.id}`}]);
@@ -389,7 +385,7 @@ exports.search = {
         }
         if (req.body.search) {
             for (let key in req.body.search) {
-                search.push({[key]: {[Op.like]: `%${req.body.search[key]}%`}});
+                search.push({[key]: database.sequelize.where(database.sequelize.fn('lower', database.sequelize.col(key)), {[Op.like]: `%${req.body.search[key].toLowerCase()}%`})});
             }
         }
         Regions.count({where: search}).then(count => {
@@ -407,7 +403,7 @@ exports.search = {
             }, {transaction: t});
         }).then(data => {
             if (data.length > 0 || data !== undefined) {
-                return res.status(200).json(data, hateosLinks);
+                return res.status(200).json({data}, hateosLinks);
             } else {
                 return res.status(400).json({
                     timestamp: new Date().toISOString(),
