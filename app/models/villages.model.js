@@ -18,14 +18,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        districtId: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-        },
-        regionId: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-        },
         use: {
             type: Sequelize.TINYINT,
             defaultValue: 1,

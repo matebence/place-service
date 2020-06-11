@@ -18,10 +18,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.SMALLINT,
             allowNull: false,
         },
-        regionId: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-        },
         use: {
             type: Sequelize.TINYINT,
             defaultValue: 1,

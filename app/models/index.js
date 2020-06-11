@@ -13,10 +13,9 @@ module.exports = (app, config) => {
         }
     });
 
-    sequelize.sync({force: config.get('node.sequelize.create-drop')})
-        .then(result => {
-            console.log(strings.DATABASE_STRUCTURE);
-        }).catch(error => {
+    sequelize.sync({force: config.get('node.sequelize.create-drop')}).then(result => {
+        console.log(strings.DATABASE_STRUCTURE)
+    }).catch(error => {
         console.log(strings.DATABASE_STRUCTURE_ERR)
     });
 
