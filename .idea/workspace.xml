@@ -4,9 +4,6 @@
     <list default="true" id="06f604eb-b950-45fe-8786-7edfafcf2637" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/districts.controller.js" afterPath="$PROJECT_DIR$/app/controllers/districts.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/regions.controller.js" afterPath="$PROJECT_DIR$/app/controllers/regions.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/villages.controller.js" afterPath="$PROJECT_DIR$/app/controllers/villages.controller.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -169,6 +166,20 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="place-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="place-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -183,20 +194,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="places-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="places-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -207,7 +204,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../parcel-service" />
     <property name="SearchEverywhereHistoryKey" value="auth.r&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/routes/auth.routes.js&#10;str&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/resources/strings.js&#10;boo&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/resources/bootstrap.js&#10;index.js&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/models/index.js&#10;docker&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/Dockerfile&#10;cont&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/controllers/regions.controller.js&#10;package&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/package.json&#10;regions&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/controllers/regions.controller.js&#10;routes&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/routes/regions.routes.js&#10;regions.mode&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/models/regions.model.js&#10;index.&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/models/index.js&#10;villages.m&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/models/villages.model.js&#10;vill&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/controllers/villages.controller.js&#10;distric&#9;FILE&#9;file://D:/Projects/app-blesk/places-service/app/models/districts.model.js" />
   </component>
   <component name="RecentsManager">
@@ -365,11 +362,12 @@
       <workItem from="1591974702365" duration="168000" />
       <workItem from="1592147077148" duration="149000" />
       <workItem from="1592147631218" duration="134000" />
+      <workItem from="1592157689212" duration="795000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125597000" />
+    <option name="totallyTimeSpent" value="126392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1929" y="-9" width="1938" height="1098" extended-state="6" />
@@ -702,8 +700,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="48" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="32" />
+        <state relative-caret-position="168">
+          <caret line="7" column="34" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="34" />
           <folding />
         </state>
       </provider>
