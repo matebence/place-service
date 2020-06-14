@@ -11,7 +11,7 @@ const DEFAULT_PAGE_NUMBER = 1;
 
 exports.create = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER'])) {
+        if (!req.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
@@ -90,7 +90,7 @@ exports.create = {
 
 exports.delete = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER'])) {
+        if (!req.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
@@ -147,7 +147,7 @@ exports.delete = {
 
 exports.update = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER'])) {
+        if (!req.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
@@ -238,7 +238,7 @@ exports.update = {
 
 exports.get = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER'])) {
+        if (!req.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
@@ -296,7 +296,7 @@ exports.get = {
 
 exports.getAll = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER'])) {
+        if (!req.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
@@ -360,7 +360,7 @@ exports.getAll = {
 
 exports.search = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER'])) {
+        if (!req.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_CLIENT', 'ROLE_COURIER'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
