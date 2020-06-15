@@ -8,11 +8,11 @@ module.exports = app => {
 
     router.put("/:id", regions.update.authorize, regions.update.checkBody, regions.update.validate, regions.update.inDatabase);
 
-    router.get("/:id",  regions.get.authorize, regions.get.validate, regions.get.inDatabase);
+    router.get("/:id",  regions.get.authorize, regions.get.validate, regions.get.inDatabase, regions.get.fetchDataFromService, regions.get.fetchDataFromCache);
 
-    router.get("/page/:pageNumber/limit/:pageSize", regions.getAll.authorize, regions.getAll.validate, regions.getAll.inDatabase);
+    router.get("/page/:pageNumber/limit/:pageSize", regions.getAll.authorize, regions.getAll.validate, regions.getAll.inDatabase, regions.getAll.fetchDataFromService, regions.getAll.fetchDataFromCache);
 
-    router.post("/search", regions.search.authorize, regions.search.checkBody, regions.search.inDatabase);
+    router.post("/search", regions.search.authorize, regions.search.checkBody, regions.search.inDatabase, regions.search.fetchDataFromService, regions.search.fetchDataFromCache);
 
     router.post("/join/:columnName", regions.join.authorize, regions.join.checkBody, regions.join.validate, regions.join.inDatabase);
 
