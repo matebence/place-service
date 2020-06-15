@@ -14,5 +14,7 @@ module.exports = app => {
 
     router.post("/search", regions.search.authorize, regions.search.checkBody, regions.search.inDatabase);
 
+    router.post("/join/:columnName", regions.join.authorize, regions.join.checkBody, regions.join.validate, regions.join.inDatabase);
+
     app.use('/api/regions', router);
 };

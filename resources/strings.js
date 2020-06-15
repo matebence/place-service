@@ -37,6 +37,7 @@ module.exports = {
     REGION_ID_INT: `Nesprávný formát identifikacného čísla`,
     REGION_PAGE_NUMBER_INT: `Nesprávný formát číslo strany`,
     REGION_PAGE_SIZE_INT: `Nesprávný formát veľkosť strany`,
+    REGION_COLUMN_NAME_ALPHA: `Nesprávný formát názov stľpca`,
 
     DISTRICT_NAME_LENGHT: `Minimálna dlžka okresu je 3 a maximalná je 64`,
     DISTRICT_NAME_ALPHA: `Nesprávný formát názov okresu`,
@@ -48,6 +49,7 @@ module.exports = {
     DISTRICT_ID_INT: `Nesprávný formát identifikacného čísla`,
     DISTRICT_PAGE_NUMBER_INT: `Nesprávný formát číslo strany`,
     DISTRICT_PAGE_SIZE_INT: `Nesprávný formát veľkosť strany`,
+    DISTRICT_COLUMN_NAME_ALPHA: `Nesprávný formát názov stľpca`,
 
     VILLAGE_FULL_NAME_LENGHT: `Minimálna dlžka obce/mesta je 3 a maximalná je 64`,
     VILLAGE_FULL_NAME_ALPHA: `Nesprávný formát názov obce/mesta`,
@@ -59,5 +61,6 @@ module.exports = {
     VILLAGE_USE_INT: `Hodnota musí byť 1 alebo 0`,
     VILLAGE_ID_INT: `Nesprávný formát identifikacného čísla`,
     VILLAGE_PAGE_NUMBER_INT: `Nesprávný formát číslo strany`,
-    VILLAGE_PAGE_SIZE_INT: `Nesprávný formát veľkosť strany`
+    VILLAGE_PAGE_SIZE_INT: `Nesprávný formát veľkosť strany`,
+    VILLAGE_COLUMN_NAME_ALPHA: `Nesprávný formát názov stľpca`
 };

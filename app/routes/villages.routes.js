@@ -14,5 +14,7 @@ module.exports = app => {
 
     router.post("/search", villages.search.authorize, villages.search.checkBody, villages.search.inDatabase);
 
+    router.post("/join/:columnName", villages.join.authorize, villages.join.checkBody, villages.join.validate, villages.join.inDatabase);
+
     app.use('/api/villages', router);
 };
