@@ -492,16 +492,15 @@ exports.join = {
             } else {
                 return res.status(400).json({
                     timestamp: new Date().toISOString(),
-                    message: strings.VILLAGE_NOT_FOUND,
+                    message: strings.DISTRICT_NOT_FOUND,
                     error: true,
                     nav: `${req.protocol}://${req.get('host')}`
                 });
             }
         }).catch(err => {
-            console.log(err);
             return res.status(500).json({
                 timestamp: new Date().toISOString(),
-                message: strings.VILLAGE_NOT_FOUND,
+                message: strings.DISTRICT_NOT_FOUND,
                 error: true,
                 nav: `${req.protocol}://${req.get('host')}`
             });
