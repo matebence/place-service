@@ -30,7 +30,7 @@ module.exports = {
     VILLAGE_NOT_FOUND: `Ľutujeme ale nenašlo sa žiadne mesto/obec`,
 
     REGION_NAME_LENGHT: `Minimálna dlžka kraja je 3 a maximalná je 64`,
-    REGION_NAME_ALPHA: `Nesprávný formát názov kraja`,
+    REGION_NAME_MATCHES: `Nesprávný formát názov kraja`,
     REGION_SHORTCUT_LENGHT: `Nesprávna dlžka iniciály kraja, dlžka musí byť 2`,
     REGION_SHORTCUT_ALPHA: `Nesprávný formát iniciály kraja`,
     REGION_USE_INT: `Hodnota musí byť 1 alebo 0`,
@@ -40,7 +40,7 @@ module.exports = {
     REGION_COLUMN_NAME_ALPHA: `Nesprávný formát názov stľpca`,
 
     DISTRICT_NAME_LENGHT: `Minimálna dlžka okresu je 3 a maximalná je 64`,
-    DISTRICT_NAME_ALPHA: `Nesprávný formát názov okresu`,
+    DISTRICT_NAME_MATCHES: `Nesprávný formát názov okresu`,
     DISTRICT_VEH_REG_NUM_LENGHT: `Nesprávna dlžka iniciály okresu, dlžka musí byť 2`,
     DISTRICT_VEH_REG_NUM_ALPHA: `Nesprávný formát iniciály okresu`,
     DISTRICT_CODE_INT: `Nesprávný formát kód okresu`,
@@ -52,10 +52,11 @@ module.exports = {
     DISTRICT_COLUMN_NAME_ALPHA: `Nesprávný formát názov stľpca`,
 
     VILLAGE_FULL_NAME_LENGHT: `Minimálna dlžka obce/mesta je 3 a maximalná je 64`,
-    VILLAGE_FULL_NAME_ALPHA: `Nesprávný formát názov obce/mesta`,
+    VILLAGE_FULL_NAME_MATCHES: `Nesprávný formát názov obce/mesta`,
     VILLAGE_SHORT_NAME_LENGHT: `Minimálna dlžka obce/mesta je 3 a maximalná je 32, (kratký názov)`,
-    VILLAGE_SHORT_NAME_ALPHA: `Nesprávný formát názov obce/mesta, (kratký názov)`,
-    VILLAGE_ZIP_ALPHA_NUMERIC: `Nesprávný formát PSČ`,
+    VILLAGE_SHORT_NAME_MATCHES: `Nesprávný formát názov obce/mesta, (kratký názov)`,
+    VILLAGE_ZIP_MATCH: `Nesprávný formát PSČ`,
+    VILLAGE_ZIP_LENGTH: `Nesprávný dľžka PSČ`,
     VILLAGE_DISTRICT_ID_INT: `Nesprávný formát identifikacného čísla kraja`,
     VILLAGE_REGION_ID_INT: `Nesprávný formát identifikacného čísla kraja`,
     VILLAGE_USE_INT: `Hodnota musí byť 1 alebo 0`,

@@ -35,12 +35,13 @@ exports.create = {
     validate: [
         check('fullName')
             .isLength({min: 3, max: 64}).withMessage(strings.VILLAGE_FULL_NAME_LENGHT)
-            .isAlpha(['sk-SK']).withMessage(strings.VILLAGE_FULL_NAME_ALPHA),
+            .matches(/^[\D ]+$/).withMessage(strings.VILLAGE_FULL_NAME_MATCHES),
         check('shortName')
-            .isLength({min: 3, max: 32}).withMessage(strings.VILLAGE_SHORT_NAME_LENGHT)
-            .isAlpha(['sk-SK']).withMessage(strings.VILLAGE_SHORT_NAME_ALPHA),
+            .isLength({min: 3, max: 64}).withMessage(strings.VILLAGE_SHORT_NAME_LENGHT)
+            .matches(/^\p{L}+\s*\p{L}+\s*\p{L}+\s*\p{L}+$/).withMessage(strings.VILLAGE_SHORT_NAME_MATCHES),
         check('zip')
-            .isAlphanumeric(['sk-SK']).withMessage(strings.VILLAGE_ZIP_ALPHA_NUMERIC),
+            .isLength({min: 3, max: 6}).withMessage(strings.VILLAGE_ZIP_LENGTH)
+            .matches(/^\d+ *\d+$/).withMessage(strings.VILLAGE_ZIP_MATCH),
         check('districtId')
             .isInt({min: 1}).withMessage(strings.VILLAGE_DISTRICT_ID_INT),
         check('regionId')
@@ -124,7 +125,7 @@ exports.delete = {
                 where: {id: req.params.id}
             }, {transaction: t});
         }).then(num => {
-            if (num === 1) {
+            if (num.pop() === 1) {
                 return res.status(200).json({});
             } else {
                 return res.status(400).json({
@@ -173,12 +174,13 @@ exports.update = {
             .isInt({min: 1}).withMessage(strings.VILLAGE_ID_INT),
         check('fullName')
             .isLength({min: 3, max: 64}).withMessage(strings.VILLAGE_FULL_NAME_LENGHT)
-            .isAlpha(['sk-SK']).withMessage(strings.VILLAGE_FULL_NAME_ALPHA),
+            .matches(/^\p{L}+\s*\p{L}+\s*\p{L}+\s*\p{L}+$/).withMessage(strings.VILLAGE_FULL_NAME_MATCHES),
         check('shortName')
-            .isLength({min: 3, max: 32}).withMessage(strings.VILLAGE_SHORT_NAME_LENGHT)
-            .isAlpha(['sk-SK']).withMessage(strings.VILLAGE_SHORT_NAME_ALPHA),
+            .isLength({min: 3, max: 64}).withMessage(strings.VILLAGE_SHORT_NAME_LENGHT)
+            .matches(/^\p{L}+\s*\p{L}+\s*\p{L}+\s*\p{L}+$/).withMessage(strings.VILLAGE_SHORT_NAME_MATCHES),
         check('zip')
-            .isAlphanumeric(['sk-SK']).withMessage(strings.VILLAGE_ZIP_ALPHA_NUMERIC),
+            .isLength({min: 3, max: 6}).withMessage(strings.VILLAGE_ZIP_LENGTH)
+            .matches(/^\d+ *\d+$/).withMessage(strings.VILLAGE_ZIP_MATCH),
         check('districtId')
             .isInt({min: 1}).withMessage(strings.VILLAGE_DISTRICT_ID_INT),
         check('regionId')

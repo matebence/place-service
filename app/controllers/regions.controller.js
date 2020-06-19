@@ -36,8 +36,8 @@ exports.create = {
     },
     validate: [
         check('name')
-            .isLength({min: 3, max: 64}).withMessage(strings.REGION_NAME_ALPHA)
-            .isAlpha(['sk-SK']).withMessage(strings.REGION_NAME_ALPHA),
+            .isLength({min: 3, max: 64}).withMessage(strings.REGION_NAME_LENGHT)
+            .matches(/^[\D ]+$/).withMessage(strings.REGION_NAME_MATCHES),
         check('shortcut')
             .isLength({min: 2, max: 2}).withMessage(strings.REGION_SHORTCUT_LENGHT)
             .isAlpha(['sk-SK']).withMessage(strings.REGION_SHORTCUT_ALPHA),
@@ -170,8 +170,8 @@ exports.update = {
         check('id')
             .isInt({min: 1}).withMessage(strings.REGION_ID_INT),
         check('name')
-            .isLength({min: 3, max: 64}).withMessage(strings.REGION_NAME_ALPHA)
-            .isAlpha(['sk-SK']).withMessage(strings.REGION_NAME_ALPHA),
+            .isLength({min: 3, max: 64}).withMessage(strings.REGION_NAME_LENGHT)
+            .matches(/^[\D ]+$/).withMessage(strings.REGION_NAME_MATCHES),
         check('shortcut')
             .isLength({min: 2, max: 2}).withMessage(strings.REGION_SHORTCUT_LENGHT)
             .isAlpha(['sk-SK']).withMessage(strings.REGION_SHORTCUT_ALPHA),
@@ -198,7 +198,7 @@ exports.update = {
                 where: {id: req.params.id}
             }, {transaction: t});
         }).then(num => {
-            if (num === 1) {
+            if (num.pop() === 1) {
                 return res.status(200).json({});
             } else {
                 return res.status(400).json({
