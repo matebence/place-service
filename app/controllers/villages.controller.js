@@ -125,7 +125,7 @@ exports.delete = {
                 where: {id: req.params.id}
             }, {transaction: t});
         }).then(num => {
-            if (num.pop() === 1) {
+            if (num === 1) {
                 return res.status(200).json({});
             } else {
                 return res.status(400).json({
@@ -208,7 +208,7 @@ exports.update = {
                 where: {id: req.params.id}
             }, {transaction: t});
         }).then(num => {
-            if (num === 1) {
+            if (num.pop() === 1) {
                 return res.status(200).json({});
             } else {
                 return res.status(400).json({
