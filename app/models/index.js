@@ -1,5 +1,6 @@
 module.exports = (app, config) => {
     const Sequelize = require("sequelize");
+    const {exec} = require('child_process');
     const strings = require('../../resources/strings');
 
     const sequelize = new Sequelize(config.get('node.datasource.database'), config.get('node.datasource.username'), config.get('node.datasource.password'), {
@@ -14,7 +15,7 @@ module.exports = (app, config) => {
     });
 
     sequelize.sync({force: config.get('node.sequelize.create-drop')}).then(result => {
-        console.log(strings.DATABASE_STRUCTURE)
+        exec("sequelize db:seed:all", (error, stdout, stderr) => console.log(strings.DATABASE_STRUCTURE));
     }).catch(error => {
         console.log(strings.DATABASE_STRUCTURE_ERR)
     });
