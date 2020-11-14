@@ -12,7 +12,7 @@ const DEFAULT_PAGE_NUMBER = 1;
 
 exports.create = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER'])) {
+        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
@@ -124,7 +124,7 @@ exports.delete = {
                 Villages.destroy({where: {districtId: req.params.id}}, {transaction: t})
             ]);
         }).then(num => {
-            if (num.every(number => number > 0)) {
+            if (num.some(number => number > 0)) {
                 return res.status(200).json({});
             } else {
                 return res.status(400).json({

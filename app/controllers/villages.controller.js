@@ -11,7 +11,7 @@ const DEFAULT_PAGE_NUMBER = 1;
 
 exports.create = {
     authorize: (req, res, next) => {
-        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN', 'ROLE_MANAGER'])) {
+        if (!req.hasRole(['ROLE_SYSTEM', 'ROLE_ADMIN'])) {
             return res.status(401).json({
                 timestamp: new Date().toISOString(),
                 message: strings.AUTH_ERR,
@@ -38,7 +38,7 @@ exports.create = {
             .matches(/^[\D ]+$/).withMessage(strings.VILLAGE_FULL_NAME_MATCHES),
         check('shortName')
             .isLength({min: 3, max: 64}).withMessage(strings.VILLAGE_SHORT_NAME_LENGHT)
-            .matches(/^\p{L}+\s*\p{L}+\s*\p{L}+\s*\p{L}+$/).withMessage(strings.VILLAGE_SHORT_NAME_MATCHES),
+            .matches(/^[\D ]+$/).withMessage(strings.VILLAGE_SHORT_NAME_MATCHES),
         check('zip')
             .isLength({min: 3, max: 6}).withMessage(strings.VILLAGE_ZIP_LENGTH)
             .matches(/^\d+ *\d+$/).withMessage(strings.VILLAGE_ZIP_MATCH),
@@ -174,10 +174,10 @@ exports.update = {
             .isInt({min: 1}).withMessage(strings.VILLAGE_ID_INT),
         check('fullName')
             .isLength({min: 3, max: 64}).withMessage(strings.VILLAGE_FULL_NAME_LENGHT)
-            .matches(/^\p{L}+\s*\p{L}+\s*\p{L}+\s*\p{L}+$/).withMessage(strings.VILLAGE_FULL_NAME_MATCHES),
+            .matches(/^[\D ]+$/).withMessage(strings.VILLAGE_FULL_NAME_MATCHES),
         check('shortName')
             .isLength({min: 3, max: 64}).withMessage(strings.VILLAGE_SHORT_NAME_LENGHT)
-            .matches(/^\p{L}+\s*\p{L}+\s*\p{L}+\s*\p{L}+$/).withMessage(strings.VILLAGE_SHORT_NAME_MATCHES),
+            .matches(/^[\D ]+$/).withMessage(strings.VILLAGE_SHORT_NAME_MATCHES),
         check('zip')
             .isLength({min: 3, max: 6}).withMessage(strings.VILLAGE_ZIP_LENGTH)
             .matches(/^\d+ *\d+$/).withMessage(strings.VILLAGE_ZIP_MATCH),

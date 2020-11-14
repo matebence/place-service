@@ -23,11 +23,5 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: 1,
             allowNull: false,
         }
-    }, {
-        uniqueKeys: {
-            Items_unique: {
-                fields: ['name', 'vehRegNum']
-            }
-        }
     });
 };
