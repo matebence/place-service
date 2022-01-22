@@ -32,7 +32,7 @@
     "ip": "^1.1.5",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "sequelize": "^5.21.11",
     "zipkin": "^0.21.0",
     "zipkin-context-cls": "^0.21.0",
